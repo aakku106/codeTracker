@@ -6,6 +6,7 @@ from datetime import datetime
 def git_push():
     try:
         # Add changes to git
+        #check auto flow
         subprocess.run(["git", "add", "logs.csv", "README.md"], check=True)
 
         # Commit the changes with a timestamp message
