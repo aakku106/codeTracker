@@ -6,6 +6,7 @@ from datetime import datetime
 def git_push():
     try:
         # Add all changes to git (stages all modified files)
+        # check 3
         subprocess.run(["git", "add", "."], check=True)
 
         # Commit the changes with a timestamp message
