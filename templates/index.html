@@ -9,23 +9,27 @@
 </head>
 
 <body>
-    <h1>Welcome to the Flask Log Tracker!</h1>
+    <div class="container">
+        <h1>Welcome to the Flask Log Tracker!</h1>
 
-    <!-- Display Success Message -->
-    {% if message %}
-    <p>{{ message }}</p>
-    {% endif %}
+        <!-- Display Success Message -->
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
 
-    <!-- Input Form for Logging Work -->
-    <form method="POST">
-        <label for="logic_name">Worked On:</label>
-        <input type="text" name="logic_name" required>
-        <input type="submit" value="Log Work">
-    </form>
+        <!-- Input Form for Logging Work -->
+        <form method="POST">
+            <label for="logic_name">Worked On:</label>
+            <input type="text" name="logic_name" required>
+            <input type="submit" value="Log Work">
+        </form>
 
-    <br>
+        <br>
 
-    <a class="navigation" href="/logs"> <span class="margins">View Logs</span></a>
+        <a class="navigation" href="/logs"> <span class="margins">View Logs</span></a>
+
+    </div>
+
 </body>
 
 </html>
