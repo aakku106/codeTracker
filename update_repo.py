@@ -5,9 +5,8 @@ from datetime import datetime
 # GitHub Repo Commit and Push Automation
 def git_push():
     try:
-        # Add changes to git
-        #check auto flow
-        subprocess.run(["git", "add", "logs.csv", "README.md"], check=True)
+        # Add all changes to git (stages all modified files)
+        subprocess.run(["git", "add", "."], check=True)
 
         # Commit the changes with a timestamp message
         commit_message = f"Auto-update logs at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
