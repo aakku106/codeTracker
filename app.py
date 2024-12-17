@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import csv
 import os
@@ -14,11 +14,9 @@ if not os.path.exists(LOG_FILE):
         writer = csv.writer(file)
         writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
-
 @app.route('/')
 def home():
-    return "Hello, Aakku! Flask is running 🎉"
-
+    return render_template('index.html')
 
 @app.route('/log', methods=['POST', 'GET'])
 def log_work():
@@ -37,33 +35,24 @@ def log_work():
             writer = csv.writer(file)
             writer.writerow([sn, logic_name, date_time])
 
-        return f"Log saved: {logic_name} at {date_time}"
+        # After logging, update the README
+        update_readme()
 
-    # Display the form for input
-    return '''
-        <form method="POST">
-            Logic/Function Worked On: <input type="text" name="logic_name">
-            <input type="submit" value="Log Work">
-        </form>
-        <br>
-        <a href="/logs">View Logs</a>
-    '''
+        return redirect(url_for('logs'))
 
+    return render_template('log_form.html')
 
 @app.route('/logs')
-def view_logs():
+def logs():
     # Read and display the logs from the CSV file
     with open(LOG_FILE, mode="r") as file:
         reader = list(csv.reader(file))
-        log_html = "<h2>Work Logs</h2><ul>"
+        logs = []
         for row in reader[1:]:  # Skip the header
-            log_html += f"<li>S.N: {row[0]} | {row[1]} | {row[2]}</li>"
-        log_html += "</ul>"
-    return log_html
+            logs.append({"sn": row[0], "logic": row[1], "date_time": row[2]})
 
+    return render_template('logs.html', logs=logs)
 
-
-# Update README.md with the latest logs
 def update_readme():
     with open(LOG_FILE, mode="r") as file:
         reader = list(csv.reader(file))
@@ -73,14 +62,6 @@ def update_readme():
             readme.write("| --- | -------------- | ------------- |\n")
             for row in reader[1:]:
                 readme.write(f"| {row[0]} | {row[1]} | {row[2]} |\n")
-
-# Call update_readme after writing to CSV
-update_readme()
-
-import subprocess
-
-# After updating the CSV and README
-subprocess.run(["python", "update_repo.py"])
 
 if __name__ == '__main__':
     app.run(debug=True)
