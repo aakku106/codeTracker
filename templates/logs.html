@@ -11,17 +11,18 @@
 <body>
     <h1>Work Logs</h1>
 
+    <a class="navigation" href="/"><span class="margins">Back to Home</span></a>
+
     <!-- Display the list of logs -->
     <ul>
         {% for log in logs %}
-        <li>S.N: {{ log[0] }} | {{ log[1] }} | {{ log[2] }}</li>
+        <li class="row">S.N: {{ log[0] }} | {{ log[1] }} | {{ log[2] }}</li>
         {% else %}
         <li>No logs yet!</li>
         {% endfor %}
     </ul>
 
     <br>
-    <a href="/">Back to Home</a>
 </body>
 
 </html>

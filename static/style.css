@@ -1,66 +1,105 @@
+/** @format */
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    color: #333;
-    text-align: center;
-    padding: 20px;
+  color: #333;
+  text-align: center;
+  padding: 2vw;
 }
 
 a {
-    text-decoration: none;
-    color: #4CAF50;
-    font-weight: bold;
+  text-decoration: none;
+  color: #4caf50;
+  font-weight: bold;
 }
 
 a:hover {
-    color: #333;
+  color: #333;
 }
 
 form {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 30vw;
+  margin: 0 auto;
+  padding: 2vw;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: x-large;
+  font-weight: bold;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 20vw;
+  padding: 1vw 5vw;
+  height: 1vw;
+  margin: 1vw;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 30vw;
+  padding: 1vw;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0.5vw;
+  cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    background-color: #fff;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 0.5vw 0;
+  padding: 1vw;
+  border-radius: 0.5vw;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vw;
+  border-bottom: 1px solid #ccc;
+  text-align: center !important;
+  padding: 2vw;
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 1vw;
+  background-color: #4caf50;
+  color: white;
+
+  .margins {
+    margin: auto;
+  }
 }
