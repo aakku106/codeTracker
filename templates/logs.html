@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logs</title>
+    <title>Work Logs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <h1>Work Logs</h1>
+
+    <!-- Display the list of logs -->
     <ul>
         {% for log in logs %}
-        <li>S.N: {{ log.sn }} | {{ log.logic }} | {{ log.date_time }}</li>
+        <li>S.N: {{ log[0] }} | {{ log[1] }} | {{ log[2] }}</li>
+        {% else %}
+        <li>No logs yet!</li>
         {% endfor %}
     </ul>
+
     <br>
-    <a href="{{ url_for('log_work') }}">Log New Work</a>
+    <a href="/">Back to Home</a>
 </body>
 
 </html>

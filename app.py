@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from datetime import datetime
 import csv
 import os
@@ -14,12 +14,9 @@ if not os.path.exists(LOG_FILE):
         writer = csv.writer(file)
         writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
-
-@app.route('/log', methods=['POST', 'GET'])
-def log_work():
+    message = ""
     if request.method == 'POST':
         # Get the input from the form
         logic_name = request.form.get('logic_name')
@@ -35,33 +32,21 @@ def log_work():
             writer = csv.writer(file)
             writer.writerow([sn, logic_name, date_time])
 
-        # After logging, update the README
-        update_readme()
+        # After saving, update message
+        message = f"Log saved: {logic_name} at {date_time}"
 
-        return redirect(url_for('logs'))
-
-    return render_template('log_form.html')
+    return render_template('index.html', message=message)
 
 @app.route('/logs')
 def logs():
     # Read and display the logs from the CSV file
+    logs = []
     with open(LOG_FILE, mode="r") as file:
         reader = list(csv.reader(file))
-        logs = []
         for row in reader[1:]:  # Skip the header
-            logs.append({"sn": row[0], "logic": row[1], "date_time": row[2]})
+            logs.append(row)
 
     return render_template('logs.html', logs=logs)
-
-def update_readme():
-    with open(LOG_FILE, mode="r") as file:
-        reader = list(csv.reader(file))
-        with open("README.md", "w") as readme:
-            readme.write("# Work Logs 🚀\n\n")
-            readme.write("| S.N | Logic/Function | Date and Time |\n")
-            readme.write("| --- | -------------- | ------------- |\n")
-            for row in reader[1:]:
-                readme.write(f"| {row[0]} | {row[1]} | {row[2]} |\n")
 
 if __name__ == '__main__':
     app.run(debug=True)
