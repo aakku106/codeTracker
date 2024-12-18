@@ -5,8 +5,11 @@ import os
 
 app = Flask(__name__)
 
-# Path to the CSV file
-LOG_FILE = "logs.csv"
+# Get the absolute path of the current script (where 'app.py' is located)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Path to the CSV file inside the correct directory
+LOG_FILE = os.path.join(BASE_DIR, "logs.csv")
 
 # Initialize CSV file with headers if it doesn't exist
 if not os.path.exists(LOG_FILE):
