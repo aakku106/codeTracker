@@ -2,13 +2,15 @@ from flask import Flask, render_template, request
 from datetime import datetime
 import csv
 import os
+from apscheduler.schedulers.background import BackgroundScheduler
+import subprocess
 
 app = Flask(__name__)
 
-# Get the absolute path of the current script (where 'app.py' is located)
+# Get the absolute path of the current script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Path to the CSV file inside the correct directory
+# Path to the CSV file
 LOG_FILE = os.path.join(BASE_DIR, "logs.csv")
 
 # Initialize CSV file with headers if it doesn't exist
@@ -17,37 +19,57 @@ if not os.path.exists(LOG_FILE):
         writer = csv.writer(file)
         writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
+
+def auto_push():
+    """
+    Automatically push updates every 30 minutes.
+    """
+    try:
+        # Run git commands
+        subprocess.run(["git", "add", "."], check=True)
+        subprocess.run(["git", "commit", "-m", "Auto-update at " + datetime.now().strftime("%Y-%m-%d %H:%M:%S")], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print("Auto-push executed successfully!")
+    except Exception as e:
+        print(f"Error during auto-push: {e}")
+
+
+# Scheduler to run auto_push every 30 minutes
+scheduler = BackgroundScheduler()
+scheduler.add_job(auto_push, 'interval', minutes=30)
+scheduler.start()
+
+
 @app.route('/index', methods=['GET', 'POST'])
 def home():
     message = ""
     if request.method == 'POST':
-        # Get the input from the form
         logic_name = request.form.get('logic_name')
         date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # Get the current log count to determine serial number
         with open(LOG_FILE, mode="r") as file:
             reader = list(csv.reader(file))
-            sn = len(reader)  # The count of rows gives the next S.N
+            sn = len(reader)
 
-        # Append the new log to the CSV file
         with open(LOG_FILE, mode="a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([sn, logic_name, date_time])
 
-        # After saving, update message
         message = f"Log saved: {logic_name} at {date_time}"
 
     return render_template('index.html', message=message)
 
+
 @app.route('/logs')
 def view_logs():
-    # Read the logs from the CSV file
     with open(LOG_FILE, mode="r") as file:
         reader = list(csv.reader(file))
-        # Reverse the list of logs (skip the header)
-        reversed_logs = reader[1:][::-1]  # Skip the header and reverse the rest
+        reversed_logs = reader[1:][::-1]
     return render_template('logs.html', logs=reversed_logs)
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    try:
+        app.run(debug=True)
+    except (KeyboardInterrupt, SystemExit):
+        scheduler.shutdown()
