@@ -14,7 +14,7 @@ if not os.path.exists(LOG_FILE):
         writer = csv.writer(file)
         writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def home():
     message = ""
     if request.method == 'POST':
