@@ -32,7 +32,7 @@ def call_update_repo():
 
     with update_lock:
         try:
-            script_path = os.path.join(BASE_DIR, "update_repo.py")
+            script_path = os.path.join("update_repo.py")
             subprocess.run(["python3", script_path], check=True)  # Adjust to "python" if needed
             print("✅ update_repo.py executed successfully!")
         except Exception as e:
