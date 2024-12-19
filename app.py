@@ -80,7 +80,7 @@ def update_readme():
             writer = csv.writer(log_file)
             writer.writerow(["Error", "Update README.md", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), f"Error updating README.md: {e}"])
 
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     message = ""
     if request.method == 'POST':
