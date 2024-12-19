@@ -8,11 +8,9 @@ from threading import Lock
 
 app = Flask(__name__)
 
-# Get the absolute path of the current script
-BASE_DIR = os.path.join(os.path.expanduser("~"), "aakku106", "first")  # for server
-
-# Path to the CSV file
-LOG_FILE = os.path.join(BASE_DIR, "logs.csv")
+# Path to the CSV file and README.md file (same folder as app.py)
+LOG_FILE = "logs.csv"  # Logs file in the same directory as app.py
+README_PATH = "README.md"  # README.md file in the same directory as app.py
 
 # Initialize CSV file with headers if it doesn't exist
 if not os.path.exists(LOG_FILE):
@@ -54,8 +52,6 @@ def update_readme():
     Update the README.md file with the logs from logs.csv.
     This will format the logs into a Markdown table.
     """
-    readme_path = os.path.join(BASE_DIR, "README.md")  # Path to README.md in the 'first' folder
-
     # Read logs from logs.csv
     with open(LOG_FILE, mode="r") as file:
         reader = list(csv.reader(file))
@@ -74,7 +70,7 @@ def update_readme():
 
     # Write the table to the README.md file
     try:
-        with open(readme_path, mode="a") as readme_file:
+        with open(README_PATH, mode="a") as readme_file:
             readme_file.write("\n\n## Log Table\n")  # Add a section for the log table
             readme_file.write(markdown_table)  # Append the table
             print("✅ README.md updated successfully!")
