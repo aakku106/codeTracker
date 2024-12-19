@@ -4,6 +4,7 @@ import csv
 import os
 from apscheduler.schedulers.background import BackgroundScheduler
 import subprocess
+import threading
 from threading import Lock
 
 app = Flask(__name__)
@@ -45,7 +46,14 @@ def call_update_repo():
 # Scheduler to run call_update_repo every 30 minutes
 scheduler = BackgroundScheduler()
 scheduler.add_job(call_update_repo, 'interval', minutes=30)
-scheduler.start()
+def start_scheduler():
+    if not scheduler.running:
+        scheduler.start()
+
+# Only start the scheduler if running in a non-uWSGI context
+if 'uwsgi' not in globals():
+    start_scheduler()
+# scheduler.start()
 
 def update_readme():
     """
