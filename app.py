@@ -8,7 +8,8 @@ import subprocess
 app = Flask(__name__)
 
 # Get the absolute path of the current script
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))#for local project if needed
+BASE_DIR = os.path.join(os.path.expanduser("~"), "aakku106", "first")#for server
 
 # Path to the CSV file
 LOG_FILE = os.path.join(BASE_DIR, "logs.csv")
@@ -20,23 +21,23 @@ if not os.path.exists(LOG_FILE):
         writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
 
-def auto_push():
+
+def call_update_repo():
     """
-    Automatically push updates every 30 minutes.
+    Call the update_repo.py script every 30 minutes.
     """
     try:
-        # Run git commands
-        subprocess.run(["git", "add", "."], check=True)
-        subprocess.run(["git", "commit", "-m", "Auto-update at " + datetime.now().strftime("%Y-%m-%d %H:%M:%S")], check=True)
-        subprocess.run(["git", "push"], check=True)
-        print("Auto-push executed successfully!")
+        # Run update_repo.py using Python
+        script_path = os.path.join(BASE_DIR, "update_repo.py")
+        subprocess.run(["python3", script_path], check=True)  # Adjust to "python" if using Python 2
+        print("✅ update_repo.py executed successfully!")
     except Exception as e:
-        print(f"Error during auto-push: {e}")
+        print(f"❌ Error executing update_repo.py: {e}")
 
 
-# Scheduler to run auto_push every 30 minutes
+# Scheduler to run call_update_repo every 30 minutes
 scheduler = BackgroundScheduler()
-scheduler.add_job(auto_push, 'interval', minutes=30)
+scheduler.add_job(call_update_repo, 'interval', minutes=30)
 scheduler.start()
 
 
