@@ -4,6 +4,7 @@ import csv
 import os
 from apscheduler.schedulers.background import BackgroundScheduler
 import subprocess
+from threading import Lock
 
 app = Flask(__name__)
 
@@ -18,27 +19,40 @@ LOG_FILE = os.path.join(BASE_DIR, "logs.csv")
 if not os.path.exists(LOG_FILE):
     with open(LOG_FILE, mode="w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(["S.N", "Logic/Function", "Date and Time"])
+        writer.writerow(["S.N", "Logic/Function", "Date and Time", "Additional Info"])
 
+# Lock to prevent multiple overlapping executions of the update_repo.py script
+update_lock = Lock()
 
 
 def call_update_repo():
     """
     Call the update_repo.py script every 30 minutes.
+    Includes locking to prevent overlapping executions.
     """
-    try:
-        # Run update_repo.py using Python
-        script_path = os.path.join(BASE_DIR, "update_repo.py")
-        subprocess.run(["python3", script_path], check=True)  # Adjust to "python" if using Python 2
-        print("✅ update_repo.py executed successfully!")
-    except Exception as e:
-        print(f"❌ Error executing update_repo.py: {e}")
+    if update_lock.locked():
+        print("🔒 Previous job still running. Skipping this interval.")
+        return
+
+    with update_lock:
+        try:
+            script_path = os.path.join(BASE_DIR, "update_repo.py")
+            subprocess.run(["python3", script_path], check=True)  # Adjust to "python" if needed
+            print("✅ update_repo.py executed successfully!")
+        except Exception as e:
+            error_log = f"❌ Error executing update_repo.py: {e}"
+            print(error_log)
+            with open(LOG_FILE, mode="a", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), error_log])
 
 
 # Scheduler to run call_update_repo every 30 minutes
 scheduler = BackgroundScheduler()
 scheduler.add_job(call_update_repo, 'interval', minutes=30)
 scheduler.start()
+
+
 
 
 @app.route('/index', methods=['GET', 'POST'])
