@@ -16,7 +16,7 @@ README_PATH = "README.md"  # README.md file in the same directory as app.py
 if not os.path.exists(LOG_FILE):
     with open(LOG_FILE, mode="w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(["S.N", "Logic/Function", "Date and Time", "Additional Info"])
+        writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
 # Lock to prevent multiple overlapping executions of the update_repo.py script
 update_lock = Lock()
@@ -33,14 +33,14 @@ def call_update_repo():
     with update_lock:
         try:
             script_path = os.path.join("update_repo.py")
-            subprocess.run(["python3", script_path], check=True)  # Adjust to "python" if needed
+            subprocess.run(["python", script_path], check=True)  
             print("✅ update_repo.py executed successfully!")
         except Exception as e:
             error_log = f"❌ Error executing update_repo.py: {e}"
             print(error_log)
             with open(LOG_FILE, mode="a", newline="") as file:
                 writer = csv.writer(file)
-                writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), error_log])
+                writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
 # Scheduler to run call_update_repo every 30 minutes
 scheduler = BackgroundScheduler()
@@ -58,12 +58,15 @@ def update_readme():
         logs = reader[1:]  # Skip the header row
 
     # Prepare the Markdown table
-    table_header = "| S.N | Logic/Function | Date and Time | Additional Info |"
-    table_divider = "|-----|----------------|---------------|-----------------|"
+    table_header = "| S.N | Logic/Function | Date and Time |"
+    table_divider = "|-----|----------------|---------------|"
     table_rows = []
     for log in logs:
-        sn, logic, date_time, info = log
-        table_rows.append(f"| {sn} | {logic} | {date_time} | {info} |")
+        if len(log) == 3:
+            sn, logic, date_time = log
+            table_rows.append(f"| {sn} | {logic} | {date_time} |")
+        else:
+            print(f"Skipping incomplete log entry: {log}")
 
     # Combine the table parts
     markdown_table = "\n".join([table_header, table_divider] + table_rows)
@@ -78,7 +81,7 @@ def update_readme():
         print(f"❌ Error updating README.md: {e}")
         with open(LOG_FILE, mode="a", newline="") as log_file:
             writer = csv.writer(log_file)
-            writer.writerow(["Error", "Update README.md", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), f"Error updating README.md: {e}"])
+            writer.writerow(["Error", "Update README.md", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
