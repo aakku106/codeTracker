@@ -9,8 +9,7 @@ from threading import Lock
 app = Flask(__name__)
 
 # Get the absolute path of the current script
-# BASE_DIR = os.path.dirname(os.path.abspath(__file__))#for local project if needed
-BASE_DIR = os.path.join(os.path.expanduser("~"), "aakku106", "first")#for server
+BASE_DIR = os.path.join(os.path.expanduser("~"), "aakku106", "first")  # for server
 
 # Path to the CSV file
 LOG_FILE = os.path.join(BASE_DIR, "logs.csv")
@@ -23,7 +22,6 @@ if not os.path.exists(LOG_FILE):
 
 # Lock to prevent multiple overlapping executions of the update_repo.py script
 update_lock = Lock()
-
 
 def call_update_repo():
     """
@@ -46,14 +44,45 @@ def call_update_repo():
                 writer = csv.writer(file)
                 writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), error_log])
 
-
 # Scheduler to run call_update_repo every 30 minutes
 scheduler = BackgroundScheduler()
 scheduler.add_job(call_update_repo, 'interval', minutes=30)
 scheduler.start()
 
+def update_readme():
+    """
+    Update the README.md file with the logs from logs.csv.
+    This will format the logs into a Markdown table.
+    """
+    readme_path = os.path.join(BASE_DIR, "README.md")  # Path to README.md in the 'first' folder
 
+    # Read logs from logs.csv
+    with open(LOG_FILE, mode="r") as file:
+        reader = list(csv.reader(file))
+        logs = reader[1:]  # Skip the header row
 
+    # Prepare the Markdown table
+    table_header = "| S.N | Logic/Function | Date and Time | Additional Info |"
+    table_divider = "|-----|----------------|---------------|-----------------|"
+    table_rows = []
+    for log in logs:
+        sn, logic, date_time, info = log
+        table_rows.append(f"| {sn} | {logic} | {date_time} | {info} |")
+
+    # Combine the table parts
+    markdown_table = "\n".join([table_header, table_divider] + table_rows)
+
+    # Write the table to the README.md file
+    try:
+        with open(readme_path, mode="a") as readme_file:
+            readme_file.write("\n\n## Log Table\n")  # Add a section for the log table
+            readme_file.write(markdown_table)  # Append the table
+            print("✅ README.md updated successfully!")
+    except Exception as e:
+        print(f"❌ Error updating README.md: {e}")
+        with open(LOG_FILE, mode="a", newline="") as log_file:
+            writer = csv.writer(log_file)
+            writer.writerow(["Error", "Update README.md", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), f"Error updating README.md: {e}"])
 
 @app.route('/index', methods=['GET', 'POST'])
 def home():
@@ -66,14 +95,17 @@ def home():
             reader = list(csv.reader(file))
             sn = len(reader)
 
+        # Write new log entry
         with open(LOG_FILE, mode="a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([sn, logic_name, date_time])
 
+        # Call the function to update README.md
+        update_readme()
+
         message = f"Log saved: {logic_name} at {date_time}"
 
     return render_template('index.html', message=message)
-
 
 @app.route('/logs')
 def view_logs():
@@ -81,7 +113,6 @@ def view_logs():
         reader = list(csv.reader(file))
         reversed_logs = reader[1:][::-1]
     return render_template('logs.html', logs=reversed_logs)
-
 
 if __name__ == '__main__':
     try:
