@@ -1,35 +1,39 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work Log Input</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log Entry</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <h1>Create New Log Entry</h1>
+      <h1>Work Log Input</h1>
 
-        {% if message %}
-        <div class="message">
-            {{ message }}
-        </div>
-        {% endif %}
+      {% if message %}
+      <div class="message">{{ message }}</div>
+      {% endif %}
 
-        <form method="POST" action="{{ url_for('home') }}">
-            <div class="form-group">
-                <label for="logic_name">Logic/Function Name:</label>
-                <input type="text" id="logic_name" name="logic_name" required>
-            </div>
-            <button type="submit">Save Log</button>
-        </form>
+      <form method="POST" action="/submit" class="input-form">
+        <input
+          type="text"
+          name="logic"
+          placeholder="Enter your logic/function"
+          required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          required />
+        <button type="submit">Submit</button>
+      </form>
 
-        <div class="nav-links">
-            <a href="{{ url_for('view_logs') }}" class="view-logs-btn">View All Logs</a>
-        </div>
+      <a href="/logs" class="view-logs">View Logs</a>
     </div>
-</body>
-
+  </body>
 </html>

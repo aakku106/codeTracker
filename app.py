@@ -1,14 +1,22 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from datetime import datetime
 import csv
 import os
 import subprocess
 
 app = Flask(__name__)
+# Set a secret key for session management
+app.secret_key = 'your-secret-key-here'  # Change this to a secure random string
+
+# Your passkey
+PASSKEY = "your-secret-passkey"  # Change this to your desired passkey
 
 # Path to the CSV file and README.md file (same folder as app.py)
 LOG_FILE = "logs.csv"  # Logs file in the same directory as app.py
 README_PATH = "README.md"  # README.md file in the same directory as app.py
+
+# Add this with your other constants at the top
+PASSWORD = "YourSecretPassword123"  # Change this to whatever password you want to use
 
 # Initialize CSV file with headers if it doesn't exist
 if not os.path.exists(LOG_FILE):
@@ -72,33 +80,49 @@ def safe_write_to_csv(row_data):
 
 @app.route('/')
 def index():
-    return redirect(url_for('home'))
+    return render_template('index.html')
 
-@app.route('/home', methods=['GET', 'POST'])
-def home():
-    message = ""
+@app.route('/auth', methods=['GET', 'POST'])
+def auth():
     if request.method == 'POST':
-        try:
-            logic_name = request.form.get('logic_name')
-            if not logic_name:
-                message = "Error: Logic name cannot be empty"
-                return render_template('index.html', message=message)
+        passkey = request.form.get('passkey')
+        if passkey == PASSKEY:
+            session['authenticated'] = True
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid passkey!')
+            return redirect(url_for('auth'))
+    return render_template('auth.html')
 
-            date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+@app.route('/logout')
+def logout():
+    session.pop('authenticated', None)
+    return redirect(url_for('index'))
 
-            with open(LOG_FILE, mode="r") as file:
-                reader = list(csv.reader(file))
-                sn = len(reader)
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Check password before processing
+    if request.form.get('password') != PASSWORD:
+        return "Incorrect password!", 403
+    
+    # Get the current count from the CSV file
+    try:
+        with open(LOG_FILE, mode="r") as file:
+            count = sum(1 for line in file) - 1  # Subtract 1 for header row
+    except FileNotFoundError:
+        count = 0
 
-            if safe_write_to_csv([sn, logic_name, date_time]):
-                update_readme()
-                message = f"Log saved: {logic_name} at {date_time}"
-            else:
-                message = "Error: Failed to save log"
-        except Exception as e:
-            message = f"Error: {str(e)}"
-
-    return render_template('index.html', message=message)
+    # Your existing submit logic
+    logic = request.form.get('logic')
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Write to CSV
+    safe_write_to_csv(count + 1, logic, current_time)
+    
+    # Update README
+    update_readme()
+    
+    return redirect(url_for('index'))
 
 @app.route('/logs')
 def view_logs():
