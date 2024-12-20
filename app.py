@@ -2,10 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import csv
 import os
-from apscheduler.schedulers.blocking import BlockingScheduler
 import subprocess
-import threading
-from threading import Lock
 
 app = Flask(__name__)
 
@@ -19,34 +16,20 @@ if not os.path.exists(LOG_FILE):
         writer = csv.writer(file)
         writer.writerow(["S.N", "Logic/Function", "Date and Time"])
 
-# Lock to prevent multiple overlapping executions of the update_repo.py script
-update_lock = Lock()
-
 def call_update_repo():
     """
-    Call the update_repo.py script every 30 minutes.
-    Includes locking to prevent overlapping executions.
+    Call the update_repo.py script.
     """
-    if update_lock.locked():
-        print("🔒 Previous job still running. Skipping this interval.")
-        return
-
-    with update_lock:
-        try:
-            script_path = os.path.join("update_repo.py")
-            subprocess.run(["python", script_path], check=True)
-            print("✅ update_repo.py executed successfully!")
-        except Exception as e:
-            error_log = f"❌ Error executing update_repo.py: {e}"
-            print(error_log)
-            with open(LOG_FILE, mode="a", newline="") as file:
-                writer = csv.writer(file)
-                writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
-
-# Scheduler to run call_update_repo every 30 minutes
-scheduler = BlockingScheduler()
-scheduler.add_job(call_update_repo, 'interval', minutes=30)
-scheduler.start()
+    try:
+        script_path = os.path.join("update_repo.py")
+        subprocess.run(["python", script_path], check=True)
+        print("✅ update_repo.py executed successfully!")
+    except Exception as e:
+        error_log = f"❌ Error executing update_repo.py: {e}"
+        print(error_log)
+        with open(LOG_FILE, mode="a", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
 def update_readme():
     """

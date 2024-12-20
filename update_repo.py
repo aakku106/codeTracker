@@ -1,15 +1,30 @@
 import subprocess
 from datetime import datetime
 import logging
+import os
 
-# Set up logging
+# Set up logging to write to a file in your project directory
+log_file = os.path.join(os.path.dirname(__file__), 'git_update.log')
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+        logging.StreamHandler()
+    ]
 )
 
 def git_push():
     try:
+        # Change to the correct directory
+        repo_path = '/home/aakku106/first'
+        os.chdir(repo_path)
+        logging.info(f"Changed directory to: {repo_path}")
+
+        # Configure Git (important for automated tasks)
+        subprocess.run(["git", "config", "--global", "user.email", "your-email@example.com"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "Your Name"], check=True)
+
         # Pull the latest changes from GitHub
         logging.info("Pulling latest changes from GitHub...")
         subprocess.run(["git", "pull", "origin", "main"], check=True)
