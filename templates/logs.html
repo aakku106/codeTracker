@@ -1,40 +1,78 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logs</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding-bottom: 60px;
+      }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Logs</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+      .return-home {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
 
-<body>
-    <div class="container">
-        <h1>Log History</h1>
+      .return-home:hover {
+        background-color: #45a049;
+      }
 
-        <table class="logs-table">
-            <thead>
-                <tr>
-                    <th>S.N</th>
-                    <th>Logic/Function</th>
-                    <th>Date and Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for log in logs %}
-                <tr>
-                    <td>{{ log[0] }}</td>
-                    <td>{{ log[1] }}</td>
-                    <td>{{ log[2] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 60px; /* Added space for fixed button */
+      }
 
-        <div class="nav-links">
-            <a href="{{ url_for('home') }}" class="back-btn">Back to Home</a>
-        </div>
-    </div>
-</body>
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
 
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="/" class="return-home">Return Home</a>
+    <table>
+      <tr>
+        <th>S.N</th>
+        <th>Logic/Function</th>
+        <th>Date and Time</th>
+      </tr>
+      {% for log in logs %}
+      <tr>
+        <td>{{ log[0] }}</td>
+        <td>{{ log[1] }}</td>
+        <td>{{ log[2] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
 </html>
