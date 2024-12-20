@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import csv
 import os
@@ -91,26 +91,44 @@ def update_readme():
             writer = csv.writer(log_file)
             writer.writerow(["Error", "Update README.md", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
+def safe_write_to_csv(row_data):
+    """Safely write a row to the CSV file with error handling"""
+    try:
+        with open(LOG_FILE, mode="a", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(row_data)
+        return True
+    except IOError as e:
+        print(f"Error writing to CSV: {e}")
+        return False
+
+@app.route('/')
+def index():
+    return redirect(url_for('home'))
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     message = ""
     if request.method == 'POST':
-        logic_name = request.form.get('logic_name')
-        date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        try:
+            logic_name = request.form.get('logic_name')
+            if not logic_name:
+                message = "Error: Logic name cannot be empty"
+                return render_template('index.html', message=message)
 
-        with open(LOG_FILE, mode="r") as file:
-            reader = list(csv.reader(file))
-            sn = len(reader)
+            date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # Write new log entry
-        with open(LOG_FILE, mode="a", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow([sn, logic_name, date_time])
+            with open(LOG_FILE, mode="r") as file:
+                reader = list(csv.reader(file))
+                sn = len(reader)
 
-        # Call the function to update README.md
-        update_readme()
-
-        message = f"Log saved: {logic_name} at {date_time}"
+            if safe_write_to_csv([sn, logic_name, date_time]):
+                update_readme()
+                message = f"Log saved: {logic_name} at {date_time}"
+            else:
+                message = "Error: Failed to save log"
+        except Exception as e:
+            message = f"Error: {str(e)}"
 
     return render_template('index.html', message=message)
 
@@ -126,3 +144,4 @@ if __name__ == '__main__':
         app.run(debug=True)
     except (KeyboardInterrupt, SystemExit):
         scheduler.shutdown()
+        

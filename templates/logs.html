@@ -4,35 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Logs</title>
+    <title>View Logs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <h1>Work Logs</h1>
-        <a class="navigation" href="/home"><span class="margins">Back to Home</span></a>
-        <ul>
-            {% for log in logs %}
-            <li class="row"> <span>
+        <h1>Log History</h1>
+        
+        <table class="logs-table">
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Logic/Function</th>
+                    <th>Date and Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log[0] }}</td>
+                    <td>{{ log[1] }}</td>
+                    <td>{{ log[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-                    <span>
-                        S.N: {{ log[0] }}
-                    </span>
-                    ||
-
-                    <span class="middle">
-                        {{ log[1] }}
-                    </span>
-                    ||
-                    <span>
-                        {{ log[2] }}
-                    </span>
-                </span>
-                {% else %}
-            <li>No logs yet!</li>
-            {% endfor %}
-        </ul>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="back-btn">Back to Home</a>
+        </div>
     </div>
 </body>
 

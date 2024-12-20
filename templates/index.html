@@ -4,34 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Logs</title>
+    <title>Log Entry</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- for some resion its not working -->
-    <!-- <link rel="stylesheet" href="/static/style.css"> -->
-
 </head>
 
 <body>
     <div class="container">
-        <h1>Welcome to the Flask Log Tracker!</h1>
+        <h1>Create New Log Entry</h1>
 
         {% if message %}
-        <p>{{ message }}</p>
+        <div class="message">
+            {{ message }}
+        </div>
         {% endif %}
 
-        <!-- Input Form for Logging Work -->
-        <form method="POST">
-            <label for="logic_name">Worked On:</label>
-            <input type="text" name="logic_name" required>
-            <input type="submit" value="Log Work">
+        <form method="POST" action="{{ url_for('home') }}">
+            <div class="form-group">
+                <label for="logic_name">Logic/Function Name:</label>
+                <input type="text" id="logic_name" name="logic_name" required>
+            </div>
+            <button type="submit">Save Log</button>
         </form>
 
-        <br>
-
-        <a class="navigation" href="/logs"> <span class="margins">View Logs</span></a>
-
+        <div class="nav-links">
+            <a href="{{ url_for('view_logs') }}" class="view-logs-btn">View All Logs</a>
+        </div>
     </div>
-
 </body>
 
 </html>
