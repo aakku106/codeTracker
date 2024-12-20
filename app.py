@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import csv
 import os
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 import subprocess
 import threading
 from threading import Lock
@@ -44,16 +44,9 @@ def call_update_repo():
                 writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
 # Scheduler to run call_update_repo every 30 minutes
-scheduler = BackgroundScheduler()
+scheduler = BlockingScheduler()
 scheduler.add_job(call_update_repo, 'interval', minutes=30)
-def start_scheduler():
-    if not scheduler.running:
-        scheduler.start()
-
-# Only start the scheduler if running in a non-uWSGI context
-if 'uwsgi' not in globals():
-    start_scheduler()
-# scheduler.start()
+scheduler.start()
 
 def update_readme():
     """
