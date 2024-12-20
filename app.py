@@ -34,7 +34,7 @@ def call_update_repo():
     with update_lock:
         try:
             script_path = os.path.join("update_repo.py")
-            subprocess.run(["python", script_path], check=True)  
+            subprocess.run(["python", script_path], check=True)
             print("✅ update_repo.py executed successfully!")
         except Exception as e:
             error_log = f"❌ Error executing update_repo.py: {e}"
@@ -144,4 +144,3 @@ if __name__ == '__main__':
         app.run(debug=True)
     except (KeyboardInterrupt, SystemExit):
         scheduler.shutdown()
-        

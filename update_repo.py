@@ -15,7 +15,7 @@ def git_push():
         subprocess.run(["git", "pull", "origin", "main"], check=True)
 
         # Check if there are changes to commit
-        status_result = subprocess.run(["git", "status", "--porcelain"], 
+        status_result = subprocess.run(["git", "status", "--porcelain"],
                                      capture_output=True, text=True)
 
         if not status_result.stdout:
@@ -36,7 +36,7 @@ def git_push():
         subprocess.run(["git", "push"], check=True)
 
         logging.info("✅ Changes pushed to GitHub successfully!")
-        
+
     except subprocess.CalledProcessError as e:
         logging.error(f"❌ Git operation failed: {e}")
         logging.error(f"Command: {e.cmd}")
