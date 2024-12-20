@@ -116,8 +116,11 @@ def submit():
     logic = request.form.get('logic')
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
+    # Create row data as a list
+    row_data = [count + 1, logic, current_time]
+    
     # Write to CSV
-    safe_write_to_csv(count + 1, logic, current_time)
+    safe_write_to_csv(row_data)
     
     # Update README
     update_readme()
