@@ -16,7 +16,7 @@ LOG_FILE = "logs.csv"  # Logs file in the same directory as app.py
 README_PATH = "README.md"  # README.md file in the same directory as app.py
 
 # Add this with your other constants at the top
-PASSWORD = "YourSecretPassword123"  # Change this to whatever password you want to use
+PASSWORD = "tehmix-5farzU-botzaw"  # Change this to whatever password you want to use
 
 # Initialize CSV file with headers if it doesn't exist
 if not os.path.exists(LOG_FILE):
