@@ -32,40 +32,32 @@ def call_update_repo():
             writer.writerow(["Error", "Update Repo Script", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
 def update_readme():
-    """
-    Update the README.md file with the logs from logs.csv.
-    This will format the logs into a Markdown table.
-    """
-    # Read logs from logs.csv
-    with open(LOG_FILE, mode="r") as file:
-        reader = list(csv.reader(file))
-        logs = reader[1:]  # Skip the header row
-
-    # Prepare the Markdown table
-    table_header = "| S.N | Logic/Function | Date and Time |"
-    table_divider = "|-----|----------------|---------------|"
-    table_rows = []
-    for log in logs:
-        if len(log) == 3:
-            sn, logic, date_time = log
-            table_rows.append(f"| {sn} | {logic} | {date_time} |")
-        else:
-            print(f"Skipping incomplete log entry: {log}")
-
-    # Combine the table parts
-    markdown_table = "\n".join([table_header, table_divider] + table_rows)
-
-    # Write the table to the README.md file
+    """Update the README.md file with the current logs."""
     try:
-        with open(README_PATH, mode="a") as readme_file:
-            readme_file.write("\n\n## Log Table\n")  # Add a section for the log table
-            readme_file.write(markdown_table)  # Append the table
-            print("✅ README.md updated successfully!")
+        # Read the CSV file
+        with open(LOG_FILE, mode="r") as file:
+            csv_reader = csv.reader(file)
+            # Skip the header row
+            next(csv_reader)
+            # Convert to list and sort by S.N
+            logs = sorted(list(csv_reader), key=lambda x: int(x[0]) if x[0].isdigit() else 0)
+
+        # Create the README content
+        readme_content = """# Work Logs 🚀
+
+| S.N | Logic/Function | Date and Time |
+|-----|---------------|---------------|
+"""
+        # Add each log entry
+        for log in logs:
+            readme_content += f"| {log[0]} | {log[1]} | {log[2]} |\n"
+
+        # Write to README.md (overwrite the entire file)
+        with open(README_PATH, mode="w", encoding="utf-8") as file:
+            file.write(readme_content)
+
     except Exception as e:
-        print(f"❌ Error updating README.md: {e}")
-        with open(LOG_FILE, mode="a", newline="") as log_file:
-            writer = csv.writer(log_file)
-            writer.writerow(["Error", "Update README.md", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
+        print(f"Error updating README: {e}")
 
 def safe_write_to_csv(row_data):
     """Safely write a row to the CSV file with error handling"""
