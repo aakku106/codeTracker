@@ -17,3 +17,5 @@
 | 13 | also removed 30 min auto update logic and  | 2024-12-20 08:39:57 |
 | 14 | and added pythonAnythere Task | 2024-12-20 08:40:18 |
 | 15 | added authentication system to stop visiters to addtheir entry  | 2024-12-20 09:39:48 |
+| 16 | passupdt | 2024-12-20 09:46:06 |
+| 17 | added authentication system to stop visiters to addtheir entry  | 2024-12-20 09:53:39 |
