@@ -1,4 +1,12 @@
+ <div align="center"> 
+  <a href="https://visitcount.itsvg.in">
+  <img src="https://visitcount.itsvg.in/api?id=aakkuGitReppoVisitCount&label=Reppo%20Cliks&color=0&icon=3&pretty=true" />
+    
+</a>
+
 # Work Logs 🚀
+
+
 
 | S.N | Logic/Function | Date and Time |
 |-----|---------------|---------------|
@@ -19,3 +27,5 @@
 | 15 | added authentication system to stop visiters to addtheir entry  | 2024-12-20 09:39:48 |
 | 16 | passupdt | 2024-12-20 09:46:06 |
 | 17 | added authentication system to stop visiters to addtheir entry  | 2024-12-20 09:53:39 |
+
+</div>
