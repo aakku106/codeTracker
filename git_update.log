@@ -108,3 +108,18 @@
 2024-12-22 03:09:52,045 - ERROR - ❌ Git operation failed: Command '['git', 'pull', 'origin', 'main']' returned non-zero exit status 1.
 2024-12-22 03:09:52,046 - ERROR - Command: ['git', 'pull', 'origin', 'main']
 2024-12-22 03:09:52,046 - ERROR - Output: None
+2024-12-22 03:11:57,414 - INFO - Changed directory to: /home/aakku106/first
+2024-12-22 03:11:57,461 - INFO - Pulling latest changes from GitHub...
+2024-12-22 03:11:57,855 - ERROR - ❌ Git operation failed: Command '['git', 'pull', 'origin', 'main']' returned non-zero exit status 1.
+2024-12-22 03:11:57,856 - ERROR - Command: ['git', 'pull', 'origin', 'main']
+2024-12-22 03:11:57,856 - ERROR - Output: None
+2024-12-22 03:12:03,337 - INFO - Changed directory to: /home/aakku106/first
+2024-12-22 03:12:03,388 - INFO - Pulling latest changes from GitHub...
+2024-12-22 03:12:03,409 - ERROR - ❌ Git operation failed: Command '['git', 'pull', 'origin', 'main']' returned non-zero exit status 128.
+2024-12-22 03:12:03,410 - ERROR - Command: ['git', 'pull', 'origin', 'main']
+2024-12-22 03:12:03,411 - ERROR - Output: None
+2024-12-22 03:12:08,643 - INFO - Changed directory to: /home/aakku106/first
+2024-12-22 03:12:08,702 - INFO - Pulling latest changes from GitHub...
+2024-12-22 03:12:08,718 - ERROR - ❌ Git operation failed: Command '['git', 'pull', 'origin', 'main']' returned non-zero exit status 128.
+2024-12-22 03:12:08,719 - ERROR - Command: ['git', 'pull', 'origin', 'main']
+2024-12-22 03:12:08,719 - ERROR - Output: None
