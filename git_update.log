@@ -140,3 +140,6 @@
 2024-12-22 03:27:18,109 - ERROR - ❌ Git operation failed: Command '['git', 'pull', 'origin', 'main']' returned non-zero exit status 1.
 2024-12-22 03:27:18,109 - ERROR - Command: ['git', 'pull', 'origin', 'main']
 2024-12-22 03:27:18,109 - ERROR - Output: None
+2024-12-22 03:30:56,927 - INFO - Changed directory to: /home/aakku106/first
+2024-12-22 03:30:56,974 - INFO - Pulling latest changes from GitHub...
+2024-12-22 03:30:57,278 - INFO - Staging changes...
