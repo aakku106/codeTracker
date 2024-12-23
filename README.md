@@ -20,12 +20,6 @@
 | 16 | passupdt | 2024-12-20 09:46:06 |
 | 17 | added authentication system to stop visiters to addtheir entry  | 2024-12-20 09:53:39 |
 | 18 | added the sleek ui and styles constent to overall page(in this code tracker project) | 2024-12-21 11:08:00 |
-<<<<<<< HEAD
 | 19 | rount queue | 2024-12-22 03:20:48 |
-=======
-
-
-
-
-</div>
->>>>>>> 3f36db757b13b6176de780ee2b5943ffb7086a6f
+| 20 | Learned aboout Priority Queue DSA | 2024-12-23 09:23:24 |
+| 21 | Inmpenented fully functional linear queue  which can even refill anter fully dequeued  | 2024-12-23 18:56:16 |
