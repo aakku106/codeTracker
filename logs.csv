@@ -22,3 +22,5 @@ S.N,Logic/Function,Date and Time
 21,Inmpenented fully functional linear queue  which can even refill anter fully dequeued ,2024-12-23 18:56:16
 22,making todolist editable in blazor webapp,2024-12-24 18:22:00
 23,started to make linked list implementaioon in C,2024-12-24 18:22:42
+24,Designed the UI of calculater webApp in Blazor,2024-12-25 16:36:59
+25,"Also added some funcanalities(All except actual calculation, like: showing input in display, clear display delete nth iten and so onn)",2024-12-25 16:38:31
