@@ -29,3 +29,4 @@
 | 25 | Also added some funcanalities(All except actual calculation, like: showing input in display, clear display delete nth iten and so onn) | 2024-12-25 16:38:31 |
 | 26 | Ctrl+a( ThannContinue) | 2024-12-27 11:10:22 |
 | 27 | Learning about docker  | 2024-12-27 11:10:44 |
+| 28 | Added he about project section in code tracker project | 2024-12-27 12:02:17 |
