@@ -95,6 +95,18 @@ body {
   -webkit-backdrop-filter: blur(20px); /* For Safari */
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  margin-bottom: 8rem !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Clear separation */
+.container::after {
+  content: "";
+  display: block;
+  height: 8rem; /* Extra spacing */
+  width: 100%;
+  clear: both;
 }
 
 @media (min-width: 768px) {
@@ -636,5 +648,305 @@ button {
     top: 1rem;
     padding: 0.6rem 1rem;
     font-size: 0.85rem;
+  }
+}
+
+/* Project Description Styles */
+.description-block {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: var(--container-bg);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.info-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.info-content p {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.feature-item {
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 0.8rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-2px);
+}
+
+.feature-item span {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.tech-stack {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--input-border);
+}
+
+.tech-stack h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  padding: 0.4rem 0.8rem;
+  background: var(--bg-color);
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  color: var(--text-color);
+}
+
+.project-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 0.8rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.github-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .description-block {
+    margin-top: 3rem;
+    padding: 1.5rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Preview Section */
+.description-preview {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--container-bg);
+  border-radius: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.description-preview h2 {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.scroll-hint {
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.scroll-indicator {
+  animation: bounce 2s infinite;
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Main Description Block */
+.description-block {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--container-bg);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.description-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add this JavaScript to make the description block appear on scroll */
+
+/* About Section Styles */
+.about-section {
+  max-width: 800px;
+  margin: 12rem auto 4rem;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  clear: both; /* Ensure it starts on a new context */
+}
+
+/* Debug styles - you can remove these later */
+.about-preview {
+  border: 2px solid transparent; /* Helps visualize the box */
+  text-align: center;
+  padding: 2.5rem;
+  background: var(--container-bg);
+  border-radius: 1.2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.about-preview h2 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.scroll-indicator {
+  color: var(--text-color);
+  opacity: 0.5;
+  animation: bounce 2s infinite;
+}
+
+.about-details {
+  padding: 2rem;
+  background: var(--container-bg);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.about-details.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Your existing feature-grid, tech-stack, and other styles... */
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .about-section {
+    margin: 2rem auto;
+  }
+
+  .about-preview,
+  .about-details {
+    padding: 1.5rem;
+  }
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.github-link,
+.portfolio-details-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 0.8rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.github-link:hover,
+.portfolio-details-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .project-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .github-link,
+  .portfolio-details-link {
+    justify-content: center;
   }
 }

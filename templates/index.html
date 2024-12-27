@@ -108,6 +108,95 @@
         <a href="/logs" class="view-logs-btn">View Logs</a>
       </div>
     </div>
+
+    <div class="about-section">
+      <div class="about-preview">
+        <h2>About This Project 🚀</h2>
+        <div class="scroll-indicator">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <path d="M7 13l5 5 5-5" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="about-details">
+        <div class="feature-grid">
+          <div class="feature-item">
+            <span>🔐</span>
+            <p>Secure Authentication</p>
+          </div>
+          <div class="feature-item">
+            <span>📝</span>
+            <p>Easy Logging</p>
+          </div>
+          <div class="feature-item">
+            <span>🌓</span>
+            <p>Dark/Light Mode</p>
+          </div>
+          <div class="feature-item">
+            <span>🔄</span>
+            <p>GitHub Auto-sync</p>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Built With:</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Git</span>
+            <span class="tech-tag">CSV</span>
+          </div>
+        </div>
+
+        <div class="project-links">
+          <a
+            href="https://github.com/aakku106/codeTracker"
+            class="github-link"
+            target="_blank"
+            rel="noopener noreferrer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            View Source
+          </a>
+          <a
+            href="https://www.adarashagaihre.com.np/codeTrackerDocumentation/"
+            class="portfolio-details-link"
+            target="_blank"
+            rel="noopener noreferrer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <path
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Documentation
+          </a>
+        </div>
+      </div>
+    </div>
+
     <script>
       const themeToggle = document.getElementById("theme-toggle");
 
@@ -136,6 +225,22 @@
           document.documentElement.getAttribute("data-theme");
         const newTheme = currentTheme === "light" ? "dark" : "light";
         setTheme(newTheme);
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const aboutDetails = document.querySelector(".about-details");
+
+        function checkScroll() {
+          const triggerBottom = window.innerHeight * 0.8;
+          const blockTop = aboutDetails.getBoundingClientRect().top;
+
+          if (blockTop < triggerBottom) {
+            aboutDetails.classList.add("visible");
+          }
+        }
+
+        window.addEventListener("scroll", checkScroll);
+        checkScroll(); // Check on initial load
       });
     </script>
   </body>
