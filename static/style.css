@@ -838,12 +838,10 @@ button {
   padding: 0 2rem;
   position: relative;
   z-index: 1;
-  clear: both; /* Ensure it starts on a new context */
+  clear: both;
 }
 
-/* Debug styles - you can remove these later */
 .about-preview {
-  border: 2px solid transparent; /* Helps visualize the box */
   text-align: center;
   padding: 2.5rem;
   background: var(--container-bg);
@@ -854,26 +852,21 @@ button {
 }
 
 .about-preview h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--text-color);
-  margin-bottom: 1rem;
-}
-
-.scroll-indicator {
-  color: var(--text-color);
-  opacity: 0.5;
-  animation: bounce 2s infinite;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
 .about-details {
-  padding: 2rem;
+  padding: 2.5rem;
   background: var(--container-bg);
   border-radius: 1.2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.5s ease;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-details.visible {
@@ -881,36 +874,38 @@ button {
   transform: translateY(0);
 }
 
-/* Your existing feature-grid, tech-stack, and other styles... */
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .about-section {
-    margin: 2rem auto;
-  }
-
-  .about-preview,
-  .about-details {
-    padding: 1.5rem;
-  }
+.feature-item {
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 0.8rem;
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
+.feature-item:hover {
+  transform: translateY(-2px);
+}
+
+.feature-item span {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Project Links */
 .project-links {
   display: flex;
   gap: 1rem;
@@ -938,8 +933,26 @@ button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Mobile responsiveness */
-@media (max-width: 480px) {
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .about-section {
+    margin: 6rem auto 3rem;
+    padding: 0 1rem;
+  }
+
+  .about-preview {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-preview h2 {
+    font-size: 1.75rem;
+  }
+
+  .about-details {
+    padding: 1.5rem;
+  }
+
   .project-links {
     flex-direction: column;
     align-items: stretch;
