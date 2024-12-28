@@ -1004,3 +1004,77 @@ button {
 .portfolio-details-link:hover svg {
   transform: translateX(2px);
 }
+
+/* Add scroll indicator for mobile */
+.logs-table-wrapper::after {
+  content: "← Scroll →";
+  display: none; /* Hidden by default */
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+  .logs-table-wrapper::after {
+    display: block; /* Show only on mobile */
+  }
+}
+
+/* Mobile Table Optimizations */
+@media (max-width: 767px) {
+  /* Table wrapper with scroll */
+  .logs-table-wrapper {
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+
+  .logs-table-wrapper:active {
+    cursor: grabbing;
+  }
+
+  /* Scroll indicator */
+  .logs-table-wrapper::after {
+    content: "← Scroll →";
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+
+  /* Table base styles */
+  .logs-table {
+    min-width: 500px;
+  }
+
+  /* Column sizes */
+  .logs-table th:first-child,
+  .logs-table td:first-child {
+    width: 60px;
+  }
+
+  .logs-table th:nth-child(2),
+  .logs-table td:nth-child(2) {
+    min-width: 150px;
+    max-width: none;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .logs-table th:last-child,
+  .logs-table td:last-child {
+    min-width: 120px;
+  }
+
+  /* Text size */
+  .logs-table td {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+}
