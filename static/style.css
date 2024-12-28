@@ -92,10 +92,9 @@ body {
   border-radius: 1rem;
   background-color: var(--container-bg);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px); /* For Safari */
+  -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-  margin-bottom: 8rem !important;
   position: relative;
   z-index: 2;
 }
@@ -104,7 +103,7 @@ body {
 .container::after {
   content: "";
   display: block;
-  height: 8rem; /* Extra spacing */
+  height: 2rem; /* Reduced from 4rem to 2rem */
   width: 100%;
   clear: both;
 }
@@ -371,7 +370,7 @@ button:active {
 
 .nav-links {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1rem; /* Reduced from 2rem to 1rem */
 }
 
 .view-logs-btn {
@@ -829,15 +828,36 @@ button {
   }
 }
 
-/* Preview Section */
+/* Preview Section - Base styles */
 .description-preview {
-  margin-top: 2rem;
+  margin-top: 2rem; /* Base margin for mobile */
   padding: 2rem;
   background: var(--container-bg);
   border-radius: 1.2rem;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .description-preview {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) {
+  .description-preview {
+    margin-top: 1.5rem; /* Reduced from 2rem */
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  .description-preview {
+    margin-top: 1rem; /* Even less space on desktop */
+  }
 }
 
 .description-preview h2 {
@@ -898,7 +918,7 @@ button {
 /* About Section Styles */
 .about-section {
   max-width: 800px;
-  margin: 12rem auto 4rem;
+  margin: 6rem auto 4rem;
   padding: 0 2rem;
   position: relative;
   z-index: 1;
@@ -1004,7 +1024,7 @@ button {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .about-section {
-    margin: 6rem auto 3rem;
+    margin: 4rem auto 3rem;
     padding: 0 1rem;
   }
 
@@ -1108,4 +1128,36 @@ button {
   }
 
   /* Rest of your mobile styles... */
+}
+
+/* Add margin only for mobile */
+@media (max-width: 767px) {
+  .container {
+    margin-top: 4rem; /* Added top margin only for mobile */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .container::after {
+    height: 1.5rem; /* Even less space on mobile */
+  }
+
+  .nav-links {
+    margin-top: 0.8rem; /* Minimal margin on mobile */
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .description-preview {
+    margin-top: 1.5rem; /* Even less space on mobile */
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  .about-section {
+    margin: 5rem auto 4rem;
+  }
 }
