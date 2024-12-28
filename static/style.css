@@ -220,6 +220,7 @@ button:active {
   padding: 0 1.5rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  margin-bottom: 4rem;
 }
 
 .logs-table {
@@ -562,14 +563,61 @@ button:active {
 /* Add horizontal scroll for tables on mobile */
 @media (max-width: 767px) {
   .logs-table-wrapper {
-    margin: 0 -1.5rem;
+    position: relative;
+    margin: 0 -1.5rem 4rem -1.5rem;
     padding: 0 1.5rem;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
   }
 
-  .logs-table {
-    min-width: 500px; /* Ensure minimum width for content */
+  /* Enhanced frosted glass effect with reduced top spacing */
+  .logs-table-wrapper::before {
+    content: "Swipe to see more →";
+    display: block;
+    text-align: center;
+    padding: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    font-size: 0.85rem;
+    margin-top: 1rem; /* Reduced from 4rem to 1rem */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideRight 1.5s ease-in-out infinite;
+  }
+
+  [data-theme="dark"] .logs-table-wrapper::before {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Subtle sliding animation */
+@keyframes slideRight {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+/* Ensure proper spacing on all screen sizes */
+@media (min-width: 768px) {
+  .logs-table-wrapper {
+    margin-bottom: 5rem;
+  }
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+  .logs-table-wrapper::before {
+    background: var(--container-bg);
   }
 }
 
@@ -655,6 +703,12 @@ button {
 /* Adjust for mobile */
 @media (max-width: 767px) {
   .portfolio-link {
+    top: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .return-home {
     top: 1rem;
     padding: 0.6rem 1rem;
     font-size: 0.85rem;
@@ -1026,6 +1080,7 @@ button {
 @media (max-width: 767px) {
   /* Table wrapper with scroll */
   .logs-table-wrapper {
+    position: relative; /* For positioning the hint */
     margin: 0 -1.5rem;
     padding: 0 1.5rem;
     overflow-x: auto;
@@ -1033,12 +1088,8 @@ button {
     cursor: grab;
   }
 
-  .logs-table-wrapper:active {
-    cursor: grabbing;
-  }
-
-  /* Scroll indicator */
-  .logs-table-wrapper::after {
+  /* Move scroll indicator below fixed elements */
+  .logs-table-wrapper::before {
     content: "← Scroll →";
     display: block;
     text-align: center;
@@ -1046,35 +1097,15 @@ button {
     color: var(--text-color);
     opacity: 0.7;
     font-size: 0.8rem;
+    margin-top: 4rem; /* Add space for fixed elements */
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--input-border);
   }
 
-  /* Table base styles */
-  .logs-table {
-    min-width: 500px;
+  /* Remove the old bottom indicator */
+  .logs-table-wrapper::after {
+    display: none;
   }
 
-  /* Column sizes */
-  .logs-table th:first-child,
-  .logs-table td:first-child {
-    width: 60px;
-  }
-
-  .logs-table th:nth-child(2),
-  .logs-table td:nth-child(2) {
-    min-width: 150px;
-    max-width: none;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  .logs-table th:last-child,
-  .logs-table td:last-child {
-    min-width: 120px;
-  }
-
-  /* Text size */
-  .logs-table td {
-    font-size: 0.9rem;
-    padding: 1rem;
-  }
+  /* Rest of your mobile styles... */
 }
