@@ -248,7 +248,9 @@ button:active {
 .logs-table th,
 .logs-table td {
   padding: 1.2rem;
-  white-space: nowrap;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 400px;
 }
 
 /* Column-specific alignment */
@@ -256,18 +258,21 @@ button:active {
 .logs-table td:first-child {
   width: 80px; /* Fixed width for S.N column */
   text-align: center;
+  white-space: nowrap;
 }
 
 .logs-table th:nth-child(2),
 .logs-table td:nth-child(2) {
   min-width: 200px; /* Minimum width for Logic/Function */
+  max-width: 60%;
   text-align: left;
 }
 
 .logs-table th:last-child,
 .logs-table td:last-child {
-  min-width: 150px; /* Minimum width for Date/Time */
+  width: 150px; /* Fixed width for Date/Time */
   text-align: right;
+  white-space: nowrap;
 }
 
 /* Responsive adjustments */
@@ -284,11 +289,16 @@ button:active {
   .logs-table th:nth-child(2),
   .logs-table td:nth-child(2) {
     min-width: 150px;
+    max-width: none;
   }
 
   .logs-table th:last-child,
   .logs-table td:last-child {
     min-width: 120px;
+  }
+
+  .logs-table td {
+    font-size: 0.9rem;
   }
 }
 
