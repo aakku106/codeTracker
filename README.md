@@ -30,3 +30,4 @@
 | 26 | Ctrl+a( ThannContinue) | 2024-12-27 11:10:22 |
 | 27 | Learning about docker  | 2024-12-27 11:10:44 |
 | 28 | Added he about project section in code tracker project | 2024-12-27 12:02:17 |
+| 29 | Adding fully functional about This project section with proper styles  | 2024-12-27 12:34:12 |
