@@ -278,7 +278,7 @@ button:active {
 /* Responsive adjustments */
 @media (max-width: 767px) {
   .logs-table {
-    min-width: 500px;
+    min-width: 500px; /* Base width for scrolling */
   }
 
   .logs-table th:first-child,
@@ -565,7 +565,7 @@ button:active {
     margin: 0 -1.5rem;
     padding: 0 1.5rem;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
 
   .logs-table {
