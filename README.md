@@ -32,3 +32,5 @@
 | 28 | Added he about project section in code tracker project | 2024-12-27 12:02:17 |
 | 29 | Adding fully functional about This project section with proper styles  | 2024-12-27 12:34:12 |
 | 30 | Realeaset the v0.0.0 for thr ideaCatcher (a note taking web app which work offline and locally ) here i used docker for ease versionControl for .net, got some stabolity errror in .net 9 so i used .net 8 version for this | 2024-12-28 12:04:41 |
+| 31 | Fixed ccs for ideaTracker project for mobile view and Fixed ablut this project marging in overall desktop and mobile view | 2024-12-28 13:03:10 |
+| 32 | sucesfully deployed the ideaCatcher webBased projec, which makes provate user secction each browser no login needed no id no password, just built securly from scrach(just hope )🤣 | 2024-12-28 15:56:35 |
