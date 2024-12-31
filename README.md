@@ -35,3 +35,4 @@
 | 31 | Fixed ccs for ideaTracker project for mobile view and Fixed ablut this project marging in overall desktop and mobile view | 2024-12-28 13:03:10 |
 | 32 | sucesfully deployed the ideaCatcher webBased projec, which makes provate user secction each browser no login needed no id no password, just built securly from scrach(just hope )🤣 | 2024-12-28 15:56:35 |
 | 33 | Added the Terms and condition page and fixed the scrolling issue of overall page  | 2024-12-29 19:02:50 |
+| 34 | Made a fully functional note taking re-edditable blazor webAssembly webApp as a assignment in tranning  | 2024-12-31 17:03:01 |
