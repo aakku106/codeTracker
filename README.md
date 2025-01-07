@@ -37,3 +37,4 @@
 | 33 | Added the Terms and condition page and fixed the scrolling issue of overall page  | 2024-12-29 19:02:50 |
 | 34 | Made a fully functional note taking re-edditable blazor webAssembly webApp as a assignment in tranning  | 2024-12-31 17:03:01 |
 | 35 | Implenenteed the fully woring calculator in blazor webassemblyy!!!!!1 | 2025-01-02 18:09:53 |
+| 36 | Infix to Postfix Conversion | 2025-01-07 16:57:07 |
