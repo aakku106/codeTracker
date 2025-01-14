@@ -5,20 +5,18 @@ import os
 import subprocess
 
 app = Flask(__name__)
-# Set a secret key for session management
-app.secret_key = 'your-secret-key-here'  # Change this to a secure random string
 
-# Your passkey
-PASSKEY = "your-secret-passkey"  # Change this to your desired passkey
+app.secret_key = 'your-secret-key-here'  
+PASSKEY = "your-secret-passkey" 
 
 # Path to the CSV file and README.md file (same folder as app.py)
 LOG_FILE = "logs.csv"  # Logs file in the same directory as app.py
 README_PATH = "README.md"  # README.md file in the same directory as app.py
 
-# Add this with your other constants at the top
-PASSWORD = "tehmix-5farzU-botzaw"  # Change this to whatever password you want to use
 
-# Initialize CSV file with headers if it doesn't exist
+PASSWORD = "tehmix-5farzU-botzaw" 
+
+# Initilizing  CSV file with headers if it doesn't exist
 if not os.path.exists(LOG_FILE):
     with open(LOG_FILE, mode="w", newline="") as file:
         writer = csv.writer(file)
