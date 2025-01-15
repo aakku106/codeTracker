@@ -41,3 +41,4 @@
 | 37 | Learned about concept of hashing | 2025-01-08 15:01:25 |
 | 38 | Completed project: "SilentEar", a sleep tracking PWA | 2025-01-11 20:54:14 |
 | 39 | filluped my "TheVault" search page with new projects. link "https://archive.adarashagaihre.com.np" | 2025-01-12 16:25:36 |
+| 40 | Learned about Insertion in Linked list, files in githun inside dsa/LinkedList  | 2025-01-14 17:41:15 |
