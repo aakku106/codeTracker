@@ -44,3 +44,4 @@
 | 40 | Learned about Insertion in Linked list, files in githun inside dsa/LinkedList  | 2025-01-14 17:41:15 |
 | 41 | Ctrl+a( ThannContinue) | 2025-01-16 19:51:04 |
 | 42 | ATM in blazow wenAssembly: till now added user adding feture, user authentation, desosit function in windows form like in desktops | 2025-01-16 19:52:36 |
+| 43 | blazor ATM project completed DirectLink(https://github.com/aakku106/cSharpTHirdSemTranning/tree/main/ATM) | 2025-01-17 09:32:50 |
