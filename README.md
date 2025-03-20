@@ -54,3 +54,5 @@
 | 50 | find out, without static list or proper database, we cannot update ui in other than same tab without reload, since we dont have db or static data upon reload all data are lost,.......... There fore in Blazor[may be all other] one cant use 2 tabls for debuging, but can call components in a single page, so ui can update without reload | 2025-02-23 17:36:17 |
 | 51 | Fixed removeFrom cart logic in KuramaCart | 2025-02-26 10:33:50 |
 | 52 | Added out of stock feture in Kurama Cart | 2025-02-27 18:40:41 |
+| 53 | Increased the stability of Kurama cart | 2025-03-20 14:45:53 |
+| 54 | Learning API  in .net | 2025-03-20 14:46:27 |
