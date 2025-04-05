@@ -57,3 +57,5 @@
 | 53 | Increased the stability of Kurama cart | 2025-03-20 14:45:53 |
 | 54 | Learning API  in .net | 2025-03-20 14:46:27 |
 | 55 | Learnig Circular queue  | 2025-03-28 09:08:02 |
+| 56 | Ctrl+a( ThannContinue) | 2025-04-05 19:56:29 |
+| 57 | learned about GIT  | 2025-04-05 19:57:15 |
