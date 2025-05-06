@@ -61,3 +61,5 @@
 | 57 | learned about GIT  | 2025-04-05 19:57:15 |
 | 58 | Learned about mousentracking and touch tracking in blazor  | 2025-04-11 08:51:08 |
 | 59 | Learned about tmux | 2025-04-24 09:15:44 |
+| 60 | Learned about .h and .c files  | 2025-05-06 06:39:10 |
+| 61 | learning about  how a real world C progrm is made and managed  | 2025-05-06 06:40:09 |
