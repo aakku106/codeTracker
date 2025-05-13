@@ -63,3 +63,7 @@
 | 59 | Learned about tmux | 2025-04-24 09:15:44 |
 | 60 | Learned about .h and .c files  | 2025-05-06 06:39:10 |
 | 61 | learning about  how a real world C progrm is made and managed  | 2025-05-06 06:40:09 |
+| 62 | Learned about simlink | 2025-05-13 12:41:48 |
+| 63 | Ctrl+a( ThannContinue) | 2025-05-13 12:41:51 |
+| 64 | made a prpper functionanign .dotfiles syncked with remote git <github> | 2025-05-13 12:42:47 |
+| 65 | Learned about alias shortcutes in terminal | 2025-05-13 12:47:36 |
