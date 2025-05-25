@@ -67,3 +67,6 @@
 | 63 | Ctrl+a( ThannContinue) | 2025-05-13 12:41:51 |
 | 64 | made a prpper functionanign .dotfiles syncked with remote git <github> | 2025-05-13 12:42:47 |
 | 65 | Learned about alias shortcutes in terminal | 2025-05-13 12:47:36 |
+| 66 | Learned object in js | 2025-05-25 13:19:37 |
+| 67 | Learned array on js | 2025-05-25 13:19:47 |
+| 68 | Learned object filfering, comparing two objects  | 2025-05-25 13:20:23 |
