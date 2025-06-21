@@ -75,3 +75,5 @@
 | 71 | Created a simple form validation with object storage in js | 2025-05-28 18:12:02 |
 | 72 | Learned basics of React | 2025-06-14 11:14:12 |
 | 73 | Learned asynk await in js | 2025-06-14 11:14:24 |
+| 74 | Learned about, Join in DB | 2025-06-21 19:50:10 |
+| 75 | Learned about group by command in DB | 2025-06-21 19:50:30 |
