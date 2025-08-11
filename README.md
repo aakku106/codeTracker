@@ -80,3 +80,7 @@
 | 76 | learned about state management in react | 2025-06-27 07:43:30 |
 | 77 | learned about condictional rendering in react | 2025-06-27 07:43:45 |
 | 78 | Learned manuplating objects in props in react | 2025-07-09 03:27:24 |
+| 79 | learned about useref in react | 2025-07-21 07:45:55 |
+| 80 | learned about rfid | 2025-08-07 18:15:58 |
+| 81 | Ctrl+a( ThannContinue) | 2025-08-11 13:23:40 |
+| 82 | Learned about mono Rippo | 2025-08-11 13:23:55 |
