@@ -84,3 +84,4 @@
 | 80 | learned about rfid | 2025-08-07 18:15:58 |
 | 81 | Ctrl+a( ThannContinue) | 2025-08-11 13:23:40 |
 | 82 | Learned about mono Rippo | 2025-08-11 13:23:55 |
+| 83 | Learned about local storage api in JS | 2025-09-05 04:55:14 |
