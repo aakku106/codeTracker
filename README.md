@@ -85,3 +85,5 @@
 | 81 | Ctrl+a( ThannContinue) | 2025-08-11 13:23:40 |
 | 82 | Learned about mono Rippo | 2025-08-11 13:23:55 |
 | 83 | Learned about local storage api in JS | 2025-09-05 04:55:14 |
+| 84 | Learning Next js | 2025-10-03 20:58:25 |
+| 85 | Ctrl+a( ThannContinue) | 2025-10-03 20:58:30 |
