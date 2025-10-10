@@ -87,3 +87,5 @@
 | 83 | Learned about local storage api in JS | 2025-09-05 04:55:14 |
 | 84 | Learning Next js | 2025-10-03 20:58:25 |
 | 85 | Ctrl+a( ThannContinue) | 2025-10-03 20:58:30 |
+| 86 | Learned about Lenis | 2025-10-09 09:50:09 |
+| 87 | learned about Daisy Ui | 2025-10-09 09:50:27 |
