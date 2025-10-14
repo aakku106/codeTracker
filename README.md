@@ -89,3 +89,4 @@
 | 85 | Ctrl+a( ThannContinue) | 2025-10-03 20:58:30 |
 | 86 | Learned about Lenis | 2025-10-09 09:50:09 |
 | 87 | learned about Daisy Ui | 2025-10-09 09:50:27 |
+| 88 | Learning YAML | 2025-10-14 19:13:37 |
