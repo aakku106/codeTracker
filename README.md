@@ -90,3 +90,5 @@
 | 86 | Learned about Lenis | 2025-10-09 09:50:09 |
 | 87 | learned about Daisy Ui | 2025-10-09 09:50:27 |
 | 88 | Learning YAML | 2025-10-14 19:13:37 |
+| 89 | ACID in DBMS | 2025-10-26 16:59:36 |
+| 90 | Serializability in ACID (more related to isolation) | 2025-10-26 17:00:07 |
