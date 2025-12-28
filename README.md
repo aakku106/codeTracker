@@ -92,3 +92,4 @@
 | 88 | Learning YAML | 2025-10-14 19:13:37 |
 | 89 | ACID in DBMS | 2025-10-26 16:59:36 |
 | 90 | Serializability in ACID (more related to isolation) | 2025-10-26 17:00:07 |
+| 91 | Learned about go interface | 2025-12-24 10:18:34 |
